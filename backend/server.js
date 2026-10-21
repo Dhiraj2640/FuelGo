@@ -1,9 +1,10 @@
-
+/*
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import Booking from "./models/Booking.js";
+import bookingRoutes from "./routes/bookingRoutes.js";
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
+app.use("/api/bookings", bookingRoutes);
 
 // Welcome route
 app.get("/", (req, res) => {
@@ -32,7 +34,7 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-
+/*
 const FUEL_PRICES = {
   Petrol: 105,
   Diesel: 92,
@@ -101,6 +103,7 @@ app.post("/api/bookings", async (req, res) => {
         message: "Enter a valid positive quantity or budget.",
       });
     }
+    
 
     const fuelPricePerLitre = FUEL_PRICES[fuelType];
 
@@ -204,6 +207,68 @@ app.get("/api/bookings", async (req, res) => {
   }
 });
 
+
+// Connect to MongoDB and start server
+async function startServer() {
+  try {
+    if (!process.env.MONGODB_URI) {
+      throw new Error("MONGODB_URI is missing from .env");
+    }
+
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("MongoDB connected successfully");
+
+    app.listen(PORT, () => {
+      console.log(`FuelGo API running at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("Startup failed:", error.message);
+    process.exit(1);
+  }
+}
+
+startServer();
+*/
+
+
+
+
+
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import bookingRoutes from "./routes/bookingRoutes.js";
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(cors({ origin: "http://localhost:5173" }));
+app.use(express.json());
+
+// Welcome route
+app.get("/", (req, res) => {
+  res.json({
+    message: "Welcome to FuelGo API",
+    status: "Server is running",
+  });
+});
+
+// Health-check route
+app.get("/api/health", (req, res) => {
+  res.json({
+    success: true,
+    database:
+      mongoose.connection.readyState === 1
+        ? "connected"
+        : "disconnected",
+  });
+});
+
+// Booking routes
+app.use("/api/bookings", bookingRoutes);
 
 // Connect to MongoDB and start server
 async function startServer() {

@@ -740,3 +740,163 @@ button {
     gap: 12px;
   }
 }
+
+/* FuelGo booking form additions */
+
+.form-label {
+  display: block;
+  margin: 20px 0 8px;
+  color: #344638;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid #dfe6db;
+  border-radius: 9px;
+  background: #fff;
+  color: #18251f;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #61924e;
+  box-shadow: 0 0 0 3px #61924e18;
+}
+
+.form-textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.quantity-mode-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.quantity-mode-options button {
+  padding: 12px 8px;
+  border: 1px solid #e0e8dc;
+  border-radius: 9px;
+  background: #fff;
+  color: #566357;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.quantity-mode-options button.mode-selected {
+  border-color: #61924e;
+  background: #f0f7e9;
+  color: #315c31;
+}
+
+.price-summary {
+  display: grid;
+  gap: 13px;
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid #e4ecde;
+  border-radius: 12px;
+  background: #f7faf4;
+}
+
+.price-summary > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #748074;
+  font-size: 12px;
+}
+
+.price-summary strong {
+  color: #263b29;
+  text-align: right;
+  font-size: 12px;
+}
+
+.price-summary .price-total {
+  padding-top: 13px;
+  border-top: 1px solid #dce6d5;
+  color: #243d29;
+}
+
+.price-summary .price-total strong {
+  color: #315f36;
+  font-size: 19px;
+}
+
+.gps-button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #cddfc4;
+  border-radius: 9px;
+  background: #f5f9f1;
+  color: #315f36;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.gps-button:hover:not(:disabled) {
+  background: #eaf4e2;
+}
+
+.gps-button:disabled,
+.booking-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.location-status {
+  color: #477b43;
+  font-size: 11px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.clear-location {
+  display: block;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: #a34836;
+  font-size: 11px;
+  text-decoration: underline;
+}
+
+.booking-feedback {
+  padding: 12px;
+  border-radius: 9px;
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.error-message {
+  background: #fff0ee;
+  color: #a52e25;
+}
+
+.success-message {
+  background: #edf8e7;
+  color: #2d692e;
+}
+
+@media (max-width: 600px) {
+  .price-summary {
+    padding: 14px;
+  }
+
+  .quantity-mode-options button {
+    font-size: 11px;
+  }
+}
