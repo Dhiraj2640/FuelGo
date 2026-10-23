@@ -25,13 +25,10 @@ const deliveryFee = 50;
 const enteredAmount = Number(quantityValue);
 
 const estimatedFuelCost =
-  quantityMode === "litres"
-    ? enteredAmount * fuelPrices[fuelType]
-    : enteredAmount;
+  quantityMode === "litres" ? enteredAmount * fuelPrices[fuelType] : enteredAmount;
 
 const estimatedLitres =
-  quantityMode === "litres"
-    ? enteredAmount
+  quantityMode === "litres" ? enteredAmount
     : enteredAmount / fuelPrices[fuelType];
 
 const estimatedTotal = estimatedFuelCost + deliveryFee;
@@ -101,18 +98,19 @@ async function handleBookingSubmit(event) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        fuelType,
-        quantityMode,
-        quantityValue: enteredAmount,
-        vehicleType,
-        customerName,
-        phone,
-        address,
-        latitude: coordinates?.latitude ?? null,
-        longitude: coordinates?.longitude ?? null,
-      }),
-    });
+      
+  body: JSON.stringify({
+  customerName,
+  phone,
+  vehicleType,
+  fuelType,
+  entryMode: quantityMode,
+  amount: enteredAmount,
+  address,
+  latitude: coordinates?.latitude ?? null,
+  longitude: coordinates?.longitude ?? null,
+    }), 
+  });
 
     const data = await response.json();
 
